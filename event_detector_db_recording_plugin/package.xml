@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+
+  <name>event_detector_db_recording_plugin</name>
+  <version>1.0.0</version>
+  <description>event_detector action plugin for writing data from buffer to a database</description>
+  <license>MIT</license>
+
+  <maintainer email="lennart.reiher@rwth-aachen.de">Lennart Reiher</maintainer>
+
+  <author email="lennart.reiher@rwth-aachen.de">Lennart Reiher</author>
+  <author email="bastian.lampe@rwth-aachen.de">Bastian Lampe</author>
+  <author email="lukas.zanger@rwth-aachen.de">Lukas Zanger</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>actionlib_msgs</depend>
+  <depend>builtin_interfaces</depend>
+  <depend>cv_bridge</depend>
+  <depend>diagnostic_msgs</depend>
+  <depend>etsi_its_cam_msgs</depend>
+  <depend>etsi_its_cam_ts_msgs</depend>
+  <depend>etsi_its_cpm_ts_msgs</depend>
+  <depend>etsi_its_denm_msgs</depend>
+  <depend>etsi_its_mapem_ts_msgs</depend>
+  <depend>etsi_its_spatem_ts_msgs</depend>
+  <depend>etsi_its_vam_ts_msgs</depend>
+  <depend>event_detector_db_recording_msgs</depend>
+  <depend>event_detector</depend>
+  <depend>geometry_msgs</depend>
+  <depend>lifecycle_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>pcl_conversions</depend>
+  <depend>pcl_ros</depend>
+  <depend>perception_msgs</depend>
+  <depend>pluginlib</depend>
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>shape_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>stereo_msgs</depend>
+  <depend>tf2_msgs</depend>
+  <depend>trajectory_msgs</depend>
+  <depend>vision_msgs</depend>
+  <depend>visualization_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>

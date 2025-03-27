@@ -1,0 +1,3 @@
+<library path="event_detector_db_recording_plugin">
+  <class type="event_detector_db_recording_plugin::RecordAllRule" base_class_type="event_detector::AnalysisRule" />
+</library>

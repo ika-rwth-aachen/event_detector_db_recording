@@ -1,0 +1,9 @@
+repositories:
+  event_detector:
+    type: git
+    url: https://github.com/ika-rwth-aachen/event_detector.git
+    version: main
+  event_detector_db_recording_msgs:
+    type: git
+    url: https://github.com/ika-rwth-aachen/event_detector_db_recording_msgs.git
+    version: main
