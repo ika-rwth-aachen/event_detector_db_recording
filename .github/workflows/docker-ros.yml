@@ -12,4 +12,5 @@ jobs:
           platform: amd64
           target: run
           base-image: rwthika/ros2:jazzy
+          rmw-implementation: rmw_zenoh_cpp
           command: ros2 launch event_detector_db_recording_plugin event_detector_db_recording_plugin.launch.py startup_state:=3
