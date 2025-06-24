@@ -11,5 +11,5 @@ jobs:
         with:
           platform: amd64
           target: run
-          base-image: rwthika/ros2:humble
+          base-image: rwthika/ros2:jazzy
           command: ros2 launch event_detector_db_recording_plugin event_detector_db_recording_plugin.launch.py startup_state:=3

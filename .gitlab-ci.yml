@@ -2,7 +2,8 @@ include:
   - remote: https://raw.githubusercontent.com/ika-rwth-aachen/docker-ros/main/.gitlab-ci/docker-ros.yml
 
 variables:
-  PLATFORM: amd64,arm64
+  BASE_IMAGE: rwthika/ros2:jazzy
+  RMW_IMPLEMENTATION: rmw_zenoh_cpp
+  PLATFORM: arm64,amd64
   TARGET: dev,run
-  BASE_IMAGE: rwthika/ros2:humble
   COMMAND: ros2 launch event_detector_db_recording_plugin event_detector_db_recording_plugin.launch.py startup_state:=3
