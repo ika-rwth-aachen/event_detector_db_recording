@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/github/license/ika-rwth-aachen/event_detector_db_recording"/>
   <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docker-ros.yml"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docker-ros.yml/badge.svg"/></a>
   <a href="https://ika-rwth-aachen.github.io/event_detector_db_recording/"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/doc.yml/badge.svg"/></a>
-  <img src="https://img.shields.io/badge/ROS 2-humble-293754"/>
+  <img src="https://img.shields.io/badge/ROS 2-jazzy-293754"/>
 </p>
 
 <p align="center">

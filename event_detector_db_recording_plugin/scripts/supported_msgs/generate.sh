@@ -31,7 +31,7 @@ upstream_pkgs=(
 
 rm -f ./includes.hpp ./header.hpp ./source.cpp ./external.txt
 for pkg in "${pkgs[@]}"; do
-    for m in /opt/ros/humble/share/${pkg}/msg/*.msg; do
+    for m in /opt/ros/jazzy/share/${pkg}/msg/*.msg; do
         echo $m
         ../genMsgToBson.py -m include ${pkg} -rv 2 $m >> ./includes.hpp
         ../genMsgToBson.py -m h ${pkg} -rv 2 $m >> ./header.hpp

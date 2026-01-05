@@ -30,25 +30,25 @@ optional arguments:
 
 Generate include-line for Pose.msg
 ```bash
-./genMsgToBson.py -m include geometry_msgs /opt/ros/humble/share/geometry_msgs/msg/Pose.msg -rv 2
+./genMsgToBson.py -m include geometry_msgs /opt/ros/jazzy/share/geometry_msgs/msg/Pose.msg -rv 2
 ```
 
 Generate function declaration for Pose.msg
 ```bash
-./genMsgToBson.py -m h geometry_msgs /opt/ros/humble/share/geometry_msgs/msg/Pose.msg -rv 2
+./genMsgToBson.py -m h geometry_msgs /opt/ros/jazzy/share/geometry_msgs/msg/Pose.msg -rv 2
 ```
 
 Generate function implementation for Pose.msg
 ```bash
-./genMsgToBson.py -m cpp geometry_msgs /opt/ros/humble/share/geometry_msgs/msg/Pose.msg -rv 2
+./genMsgToBson.py -m cpp geometry_msgs /opt/ros/jazzy/share/geometry_msgs/msg/Pose.msg -rv 2
 ```
 
 Generate list of external namespaces used in Pose.msg (helpful to know which other message packages should be processed)
 ```bash
-./genMsgToBson.py -m external geometry_msgs /opt/ros/humble/share/geometry_msgs/msg/PoseStamped.msg -rv 2
+./genMsgToBson.py -m external geometry_msgs /opt/ros/jazzy/share/geometry_msgs/msg/PoseStamped.msg -rv 2
 ```
 
 Generate function implementations for all message definitions of a package (helpful to quickly paste code for multiple message types)
 ```bash
-for m in /opt/ros/humble/share/geometry_msgs/msg/*.msg; do ./genMsgToBson.py geometry_msgs -rv 2 $m; echo ""; done
+for m in /opt/ros/jazzy/share/geometry_msgs/msg/*.msg; do ./genMsgToBson.py geometry_msgs -rv 2 $m; echo ""; done
 ```
