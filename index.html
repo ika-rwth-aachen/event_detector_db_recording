@@ -73,7 +73,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p align="center"><a class="anchor" id="md_README"></a> </p>
-<p><img src="https://img.shields.io/github/v/release/ika-rwth-aachen/event_detector_db_recording" alt="" class="inline"/> <img src="https://img.shields.io/github/license/ika-rwth-aachen/event_detector_db_recording" alt="" class="inline"/> <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docker-ros.yml"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docker-ros.yml/badge.svg" alt="" style="pointer-events: none;" class="inline"/></a> <a href="https://ika-rwth-aachen.github.io/event_detector_db_recording/"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/doc.yml/badge.svg" alt="" style="pointer-events: none;" class="inline"/></a> <img src="https://img.shields.io/badge/ROS 2-humble-293754" alt="" class="inline"/> </p>
+<p align="center"></p>
+<p><img src="https://img.shields.io/github/license/ika-rwth-aachen/event_detector_db_recording" alt="" class="inline"/></p>
+<p><a href="https://ika-rwth-aachen.github.io/event_detector_db_recording/"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/doc.yml/badge.svg" alt="" style="pointer-events: none;" class="inline"/></a> <img src="https://img.shields.io/badge/ROS 2-jazzy-293754" alt="" class="inline"/> </p>
 <p align="center"></p>
 <p>⸻ <b><em><a href="#quick-start">Quick Start</a></em></b> | <b><em><a href="#analysis-rules">Analysis Rules</a></em></b> | <b><em><a href="#installation">Installation</a></em></b> | <b><em><a href="#documentation">Documentation</a></em></b> | <b><em><a href="#research-article">Research Article</a></em></b> | <b><em><a href="#acknowledgements">Acknowledgements</a></em></b> ⸻ </p>
 <p><code>event_detector_db_recording</code> is an action plugin for the ROS 2 <a href="https://github.com/ika-rwth-aachen/event_detector">event detector framework</a> that allows to write data from buffer to a database. With this action plugin, you can automatically ...</p><ul>
@@ -124,13 +126,6 @@ Installation</h1>
 </div><!-- fragment --><p>The event detector with database recording plugin can then be launched. </p><div class="fragment"><div class="line"># ROS workspace$</div>
 <div class="line">source install/setup.bash</div>
 <div class="line">ros2 launch event_detector_db_recording_plugin event_detector_db_recording_plugin.launch.py startup_state:=3</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
-docker-ros</h2>
-<p>The event detector with database recording plugin is also available as a Docker image, containerized through <a href="https://github.com/ika-rwth-aachen/docker-ros"><em>docker-ros</em></a>.</p>
-<div class="fragment"><div class="line"># event_detector_db_recording$</div>
-<div class="line">docker run --rm \</div>
-<div class="line">  -v $(pwd)/event_detector_db_recording_plugin/config/params.yml:/docker-ros/ws/install/event_detector_db_recording_plugin/share/event_detector_db_recording_plugin/config/params.yml \</div>
-<div class="line">    ghcr.io/ika-rwth-aachen/event_detector_db_recording:latest</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 Documentation</h1>
 <h2><a class="anchor" id="autotoc_md6"></a>

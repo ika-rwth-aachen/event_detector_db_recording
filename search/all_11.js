@@ -14,7 +14,6 @@ var searchData=
   ['requesttransform_11',['requestTransform',['../classevent__detector__db__recording__plugin_1_1DatabaseInterface.html#aafa5ea6e804307a647992a099b2f5a80',1,'event_detector_db_recording_plugin::DatabaseInterface']]],
   ['research_20article_12',['Research Article',['../index.html#autotoc_md13',1,'']]],
   ['reverse_5fiterator_13',['reverse_iterator',['../classbasic__json.html#ac639cd1b4238d158286e7e21b5829709',1,'basic_json']]],
-  ['ros_14',['docker-ros',['../index.html#autotoc_md4',1,'']]],
-  ['rule_15',['rule',['../index.html#autotoc_md12',1,'How to implement a custom analysis rule'],['../md_event__detector__db__recording__plugin_2include_2event__detector__db__recording__plugin_2rules_2template_2README.html',1,'Template Rule']]],
-  ['rules_16',['rules',['../index.html#autotoc_md2',1,'Analysis Rules'],['../structevent__detector__db__recording__plugin_1_1ScenarioData.html#a96ec4ca0d424a45a8fad2f2573f8a62f',1,'event_detector_db_recording_plugin::ScenarioData::rules'],['../structevent__detector__db__recording__plugin_1_1ScenarioDataRequest.html#a22f130cfbb735d78578f95be07f93041',1,'event_detector_db_recording_plugin::ScenarioDataRequest::rules']]]
+  ['rule_14',['rule',['../index.html#autotoc_md12',1,'How to implement a custom analysis rule'],['../md_event__detector__db__recording__plugin_2include_2event__detector__db__recording__plugin_2rules_2template_2README.html',1,'Template Rule']]],
+  ['rules_15',['rules',['../index.html#autotoc_md2',1,'Analysis Rules'],['../structevent__detector__db__recording__plugin_1_1ScenarioData.html#a96ec4ca0d424a45a8fad2f2573f8a62f',1,'event_detector_db_recording_plugin::ScenarioData::rules'],['../structevent__detector__db__recording__plugin_1_1ScenarioDataRequest.html#a22f130cfbb735d78578f95be07f93041',1,'event_detector_db_recording_plugin::ScenarioDataRequest::rules']]]
 ];

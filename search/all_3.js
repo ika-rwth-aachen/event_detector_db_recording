@@ -17,9 +17,8 @@ var searchData=
   ['diff_14',['diff',['../classbasic__json.html#aff2204c04cd35b2cef35f44b2b93ffc7',1,'basic_json']]],
   ['difference_5ftype_15',['difference_type',['../classbasic__json.html#a2fe32d636c1b78861884dde9716b22b6',1,'basic_json::difference_type'],['../classdetail_1_1iter__impl.html#a6d51e1372282929d1c240223aa973c6e',1,'detail::iter_impl::difference_type']]],
   ['discarded_16',['discarded',['../namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632a94708897ec9db8647dfe695714c98e46',1,'detail']]],
-  ['docker_20ros_17',['docker-ros',['../index.html#autotoc_md4',1,'']]],
-  ['documentation_18',['documentation',['../index.html#autotoc_md6',1,'Code Documentation'],['../index.html#autotoc_md5',1,'Documentation']]],
-  ['dry_5frun_19',['dry_run',['../classevent__detector__db__recording__plugin_1_1RecordingRule.html#a4c8e5866f1f55415d34b93cce66d285a',1,'event_detector_db_recording_plugin::RecordingRule']]],
-  ['dry_5frun_5f_20',['dry_run_',['../classevent__detector__db__recording__plugin_1_1DatabaseInterface.html#af55de1a5fdebdc32830e47d4fba54c6f',1,'event_detector_db_recording_plugin::DatabaseInterface']]],
-  ['dump_21',['dump',['../classdetail_1_1serializer.html#ae73c1bac64bcc810923b9f1261af8b09',1,'detail::serializer::dump()'],['../classbasic__json.html#ac38b5f79c16205efb771e99be206b345',1,'basic_json::dump()']]]
+  ['documentation_17',['documentation',['../index.html#autotoc_md6',1,'Code Documentation'],['../index.html#autotoc_md5',1,'Documentation']]],
+  ['dry_5frun_18',['dry_run',['../classevent__detector__db__recording__plugin_1_1RecordingRule.html#a4c8e5866f1f55415d34b93cce66d285a',1,'event_detector_db_recording_plugin::RecordingRule']]],
+  ['dry_5frun_5f_19',['dry_run_',['../classevent__detector__db__recording__plugin_1_1DatabaseInterface.html#af55de1a5fdebdc32830e47d4fba54c6f',1,'event_detector_db_recording_plugin::DatabaseInterface']]],
+  ['dump_20',['dump',['../classdetail_1_1serializer.html#ae73c1bac64bcc810923b9f1261af8b09',1,'detail::serializer::dump()'],['../classbasic__json.html#ac38b5f79c16205efb771e99be206b345',1,'basic_json::dump()']]]
 ];
