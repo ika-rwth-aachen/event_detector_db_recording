@@ -1,26 +1,5 @@
-/** ============================================================================
-MIT License
-
-Copyright (c) 2025 Institute for Automotive Engineering (ika), RWTH Aachen University
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-============================================================================= */
+// Copyright Institute for Automotive Engineering (ika), RWTH Aachen University
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -83,8 +62,11 @@ class DatabaseInterface {
    * @param   user         username
    * @param   password     password
    */
-  void connectToDatabase(const std::string& db, const std::string& host = "localhost", const int port = 27017,
-                         const std::string& user = "", const std::string& password = "");
+  void connectToDatabase(const std::string& db,
+                         const std::string& host = "localhost",
+                         const int port = 27017,
+                         const std::string& user = "",
+                         const std::string& password = "");
 
   /**
    * @brief Sets the root directory for storing large data (eg images).
@@ -154,9 +136,10 @@ class DatabaseInterface {
    *
    * @return  TransformMsg  transform between the frames, if found
    */
-  bsoncxx::stdx::optional<TransformMsg> requestTransform(
-      const std::string& target_frame, const std::string& source_frame, const rclcpp::Time& time = rclcpp::Time(0),
-      const rclcpp::Duration& timeout = rclcpp::Duration::from_seconds(0));
+  bsoncxx::stdx::optional<TransformMsg> requestTransform(const std::string& target_frame,
+                                                         const std::string& source_frame,
+                                                         const rclcpp::Time& time = rclcpp::Time(0),
+                                                         const rclcpp::Duration& timeout = rclcpp::Duration::from_seconds(0));
 
   /**
    * @brief Create a new ScenarioType document in the database.
@@ -194,8 +177,10 @@ class DatabaseInterface {
    * @return  std::pair<std::string, std::string>  absolute, relative filepath
    */
   template <typename T>
-  std::pair<std::string, std::string> getLargeDataFilePath(const T& msg, const std::string& scenario_id,
-                                                           const std::string& client_id, const std::string& topic,
+  std::pair<std::string, std::string> getLargeDataFilePath(const T& msg,
+                                                           const std::string& scenario_id,
+                                                           const std::string& client_id,
+                                                           const std::string& topic,
                                                            const std::string& filename);
 
   /**
@@ -213,7 +198,9 @@ class DatabaseInterface {
    *
    * @return  ImageFileMsg  converted message containing only metadata
    */
-  ImageFileMsg writeLargeDataToDisk(const ImageMsg& msg, const std::string& scenario_id, const std::string& client_id,
+  ImageFileMsg writeLargeDataToDisk(const ImageMsg& msg,
+                                    const std::string& scenario_id,
+                                    const std::string& client_id,
                                     const std::string& topic);
 
   /**
@@ -231,8 +218,10 @@ class DatabaseInterface {
    *
    * @return  PointCloudFileMsg  converted message containing only metadata
    */
-  PointCloudFileMsg writeLargeDataToDisk(const PointCloudMsg& msg, const std::string& scenario_id,
-                                         const std::string& client_id, const std::string& topic);
+  PointCloudFileMsg writeLargeDataToDisk(const PointCloudMsg& msg,
+                                         const std::string& scenario_id,
+                                         const std::string& client_id,
+                                         const std::string& topic);
 
   /**
    * @brief Generic dummy function intended to be called on small data messages.
@@ -249,8 +238,7 @@ class DatabaseInterface {
    * @return  T            untouched input msg
    */
   template <typename T>
-  T writeLargeDataToDisk(const T& msg, const std::string& scenario_id, const std::string& client_id,
-                         const std::string& topic);
+  T writeLargeDataToDisk(const T& msg, const std::string& scenario_id, const std::string& client_id, const std::string& topic);
 
   /**
    * @brief Inserts a BSON document into a collection of the database.
@@ -283,7 +271,8 @@ class DatabaseInterface {
    * @return  bsoncxx::stdx::optional<bsoncxx::oid>  oID of upserted document
    */
   bsoncxx::stdx::optional<bsoncxx::oid> update(const bsoncxx::document::value& filter,
-                                               const bsoncxx::document::value& doc, const std::string& collection,
+                                               const bsoncxx::document::value& doc,
+                                               const std::string& collection,
                                                bool upsert = false);
 
   /**
@@ -294,8 +283,7 @@ class DatabaseInterface {
    *
    * @return  bsoncxx::stdx::optional<bsoncxx::document::value>  found document
    */
-  bsoncxx::stdx::optional<bsoncxx::document::value> find(const bsoncxx::document::value& filter,
-                                                         const std::string& collection);
+  bsoncxx::stdx::optional<bsoncxx::document::value> find(const bsoncxx::document::value& filter, const std::string& collection);
 
   /**
    * @brief Creates a data bucket document.
@@ -315,7 +303,8 @@ class DatabaseInterface {
    */
   template <typename T>
   bsoncxx::document::value createBucketDocument(const std::vector<ed::Stamped<T>>& samples,
-                                                const bsoncxx::oid& scenario_oid, const bsoncxx::oid& client_oid,
+                                                const bsoncxx::oid& scenario_oid,
+                                                const bsoncxx::oid& client_oid,
                                                 const std::string& topic);
 
   /**
@@ -332,7 +321,8 @@ class DatabaseInterface {
    */
   template <typename T, typename CT = T>
   std::vector<bsoncxx::oid> storeData(const ed::string_map_2d<std::vector<ed::Stamped<T>>>& client_samples,
-                                      const bsoncxx::oid& scenario_oid, const std::string& collection);
+                                      const bsoncxx::oid& scenario_oid,
+                                      const std::string& collection);
 
   /**
    * @brief Inserts data of a specific type into the database, linked to scenario.
@@ -351,9 +341,13 @@ class DatabaseInterface {
    */
   template <typename T, typename CT = T>
   void storeDataInScenario(const ed::string_map_2d<std::vector<ed::Stamped<T>>>& client_samples,
-                           const std::string& collection, const std::string& scenario_field,
-                           const bsoncxx::oid& scenario_oid, bsoncxx::document::value& scenario_doc,
-                           std::set<std::string>& client_ids, rclcpp::Time& first_stamp, rclcpp::Time& last_stamp);
+                           const std::string& collection,
+                           const std::string& scenario_field,
+                           const bsoncxx::oid& scenario_oid,
+                           bsoncxx::document::value& scenario_doc,
+                           std::set<std::string>& client_ids,
+                           rclcpp::Time& first_stamp,
+                           rclcpp::Time& last_stamp);
 
   /**
    * @brief Inserts PoseStamped into the database, linked to scenario.
@@ -373,9 +367,13 @@ class DatabaseInterface {
    * @param[in,out]   last_stamp        end time of scenario
    */
   void storeDataInScenario(const ed::string_map_2d<std::vector<StampedPoseMsg>>& client_samples,
-                           const std::string& collection, const std::string& scenario_field,
-                           const bsoncxx::oid& scenario_oid, bsoncxx::document::value& scenario_doc,
-                           std::set<std::string>& client_ids, rclcpp::Time& first_stamp, rclcpp::Time& last_stamp);
+                           const std::string& collection,
+                           const std::string& scenario_field,
+                           const bsoncxx::oid& scenario_oid,
+                           bsoncxx::document::value& scenario_doc,
+                           std::set<std::string>& client_ids,
+                           rclcpp::Time& first_stamp,
+                           rclcpp::Time& last_stamp);
 
   /**
    * @brief Looks up and stores transforms from client base frame to data frames.
@@ -388,8 +386,7 @@ class DatabaseInterface {
    * @param   client_id       client ID
    */
   template <typename T>
-  void storeStaticTransformsToDataFrames(const std::vector<ed::Stamped<T>>& stamped_samples,
-                                         const std::string& client_id);
+  void storeStaticTransformsToDataFrames(const std::vector<ed::Stamped<T>>& stamped_samples, const std::string& client_id);
 
   /**
    * @brief Looks up and stores transforms from client base frame to data frames.
@@ -403,7 +400,8 @@ class DatabaseInterface {
    */
   template <typename T>
   void storeStaticTransformsToDataFrames(const std::vector<ed::Stamped<T>>& stamped_samples,
-                                         const std::string& client_id, const ed::HasRosHeaderYes&);
+                                         const std::string& client_id,
+                                         const ed::HasRosHeaderYes&);
 
   /**
    * @brief Looks up and stores transforms from client base frame to data frames.
@@ -417,7 +415,8 @@ class DatabaseInterface {
    */
   template <typename T>
   void storeStaticTransformsToDataFrames(const std::vector<ed::Stamped<T>>& stamped_samples,
-                                         const std::string& client_id, const ed::HasRosHeaderNo&);
+                                         const std::string& client_id,
+                                         const ed::HasRosHeaderNo&);
 
  protected:
   /**

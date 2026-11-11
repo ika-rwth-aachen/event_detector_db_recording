@@ -5,9 +5,9 @@
   <name>event_detector_db_recording_plugin</name>
   <version>1.0.0</version>
   <description>event_detector action plugin for writing data from buffer to a database</description>
-  <license>MIT</license>
+  <license>Apache-2.0</license>
 
-  <maintainer email="lennart.reiher@rwth-aachen.de">Lennart Reiher</maintainer>
+  <maintainer email="lukas.zanger@rwth-aachen.de">Lukas Zanger</maintainer>
 
   <author email="lennart.reiher@rwth-aachen.de">Lennart Reiher</author>
   <author email="bastian.lampe@rwth-aachen.de">Bastian Lampe</author>

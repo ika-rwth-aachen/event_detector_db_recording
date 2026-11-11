@@ -1,26 +1,5 @@
-/** ============================================================================
-MIT License
-
-Copyright (c) 2025 Institute for Automotive Engineering (ika), RWTH Aachen University
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-============================================================================= */
+// Copyright Institute for Automotive Engineering (ika), RWTH Aachen University
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -99,11 +78,11 @@ SOFTWARE.
 #include <etsi_its_cam_msgs/msg/pt_activation_data.hpp>
 #include <etsi_its_cam_msgs/msg/pt_activation_type.hpp>
 #include <etsi_its_cam_msgs/msg/public_transport_container.hpp>
-#include <etsi_its_cam_msgs/msg/rsu_container_high_frequency.hpp>
 #include <etsi_its_cam_msgs/msg/reference_position.hpp>
 #include <etsi_its_cam_msgs/msg/rescue_container.hpp>
 #include <etsi_its_cam_msgs/msg/road_works_container_basic.hpp>
 #include <etsi_its_cam_msgs/msg/roadworks_sub_cause_code.hpp>
+#include <etsi_its_cam_msgs/msg/rsu_container_high_frequency.hpp>
 #include <etsi_its_cam_msgs/msg/safety_car_container.hpp>
 #include <etsi_its_cam_msgs/msg/semi_axis_length.hpp>
 #include <etsi_its_cam_msgs/msg/special_transport_container.hpp>
@@ -209,13 +188,13 @@ SOFTWARE.
 #include <etsi_its_cam_ts_msgs/msg/pt_activation_data.hpp>
 #include <etsi_its_cam_ts_msgs/msg/pt_activation_type.hpp>
 #include <etsi_its_cam_ts_msgs/msg/public_transport_container.hpp>
-#include <etsi_its_cam_ts_msgs/msg/rsu_container_high_frequency.hpp>
 #include <etsi_its_cam_ts_msgs/msg/railway_level_crossing_sub_cause_code.hpp>
 #include <etsi_its_cam_ts_msgs/msg/reference_position_with_confidence.hpp>
 #include <etsi_its_cam_ts_msgs/msg/rescue_and_recovery_work_in_progress_sub_cause_code.hpp>
 #include <etsi_its_cam_ts_msgs/msg/rescue_container.hpp>
 #include <etsi_its_cam_ts_msgs/msg/road_works_container_basic.hpp>
 #include <etsi_its_cam_ts_msgs/msg/roadworks_sub_cause_code.hpp>
+#include <etsi_its_cam_ts_msgs/msg/rsu_container_high_frequency.hpp>
 #include <etsi_its_cam_ts_msgs/msg/safety_car_container.hpp>
 #include <etsi_its_cam_ts_msgs/msg/semi_axis_length.hpp>
 #include <etsi_its_cam_ts_msgs/msg/signal_violation_sub_cause_code.hpp>
@@ -376,7 +355,6 @@ SOFTWARE.
 #include <etsi_its_denm_msgs/msg/cause_code.hpp>
 #include <etsi_its_denm_msgs/msg/cause_code_type.hpp>
 #include <etsi_its_denm_msgs/msg/closed_lanes.hpp>
-#include <etsi_its_denm_msgs/msg/denm.hpp>
 #include <etsi_its_denm_msgs/msg/dangerous_goods_basic.hpp>
 #include <etsi_its_denm_msgs/msg/dangerous_goods_extended.hpp>
 #include <etsi_its_denm_msgs/msg/decentralized_environmental_notification_message.hpp>
@@ -384,6 +362,7 @@ SOFTWARE.
 #include <etsi_its_denm_msgs/msg/delta_latitude.hpp>
 #include <etsi_its_denm_msgs/msg/delta_longitude.hpp>
 #include <etsi_its_denm_msgs/msg/delta_reference_position.hpp>
+#include <etsi_its_denm_msgs/msg/denm.hpp>
 #include <etsi_its_denm_msgs/msg/driving_lane_status.hpp>
 #include <etsi_its_denm_msgs/msg/energy_storage_type.hpp>
 #include <etsi_its_denm_msgs/msg/event_history.hpp>
@@ -443,12 +422,12 @@ SOFTWARE.
 #include <etsi_its_denm_msgs/msg/traffic_rule.hpp>
 #include <etsi_its_denm_msgs/msg/transmission_interval.hpp>
 #include <etsi_its_denm_msgs/msg/turning_radius.hpp>
-#include <etsi_its_denm_msgs/msg/vds.hpp>
 #include <etsi_its_denm_msgs/msg/validity_duration.hpp>
+#include <etsi_its_denm_msgs/msg/vds.hpp>
 #include <etsi_its_denm_msgs/msg/vehicle_identification.hpp>
 #include <etsi_its_denm_msgs/msg/vehicle_mass.hpp>
-#include <etsi_its_denm_msgs/msg/wm_inumber.hpp>
 #include <etsi_its_denm_msgs/msg/wheel_base_vehicle.hpp>
+#include <etsi_its_denm_msgs/msg/wm_inumber.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/allowed_maneuvers.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/angle.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/approach_id.hpp>
@@ -490,8 +469,8 @@ SOFTWARE.
 #include <etsi_its_mapem_ts_msgs/msg/layer_id.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/layer_type.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/longitude.hpp>
-#include <etsi_its_mapem_ts_msgs/msg/mapem.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/map_data.hpp>
+#include <etsi_its_mapem_ts_msgs/msg/mapem.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/merge_diverge_node_angle.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/minute_of_the_year.hpp>
 #include <etsi_its_mapem_ts_msgs/msg/msg_count.hpp>
@@ -567,9 +546,9 @@ SOFTWARE.
 #include <etsi_its_spatem_ts_msgs/msg/pedestrian_bicycle_detect.hpp>
 #include <etsi_its_spatem_ts_msgs/msg/restriction_class_id.hpp>
 #include <etsi_its_spatem_ts_msgs/msg/road_regulator_id.hpp>
+#include <etsi_its_spatem_ts_msgs/msg/signal_group_id.hpp>
 #include <etsi_its_spatem_ts_msgs/msg/spat.hpp>
 #include <etsi_its_spatem_ts_msgs/msg/spatem.hpp>
-#include <etsi_its_spatem_ts_msgs/msg/signal_group_id.hpp>
 #include <etsi_its_spatem_ts_msgs/msg/speed_advice.hpp>
 #include <etsi_its_spatem_ts_msgs/msg/speed_confidence_dsrc.hpp>
 #include <etsi_its_spatem_ts_msgs/msg/station_id.hpp>
@@ -699,6 +678,8 @@ SOFTWARE.
 #include <etsi_its_vam_ts_msgs/msg/yaw_rate.hpp>
 #include <etsi_its_vam_ts_msgs/msg/yaw_rate_confidence.hpp>
 #include <etsi_its_vam_ts_msgs/msg/yaw_rate_value.hpp>
+#include <event_detector_db_recording_msgs/msg/image_file.hpp>
+#include <event_detector_db_recording_msgs/msg/point_cloud_file.hpp>
 #include <geometry_msgs/msg/accel.hpp>
 #include <geometry_msgs/msg/accel_stamped.hpp>
 #include <geometry_msgs/msg/accel_with_covariance.hpp>
@@ -837,9 +818,6 @@ SOFTWARE.
 #include <visualization_msgs/msg/menu_entry.hpp>
 #include <visualization_msgs/msg/mesh_file.hpp>
 #include <visualization_msgs/msg/uv_coordinate.hpp>
-#include <event_detector_db_recording_msgs/msg/image_file.hpp>
-#include <event_detector_db_recording_msgs/msg/point_cloud_file.hpp>
-
 
 namespace event_detector_db_recording_plugin {
 
