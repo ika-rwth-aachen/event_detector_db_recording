@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['allocator_5ftype_0',['allocator_type',['../classbasic__json.html#a485873eed243b6ca7e30c96130a5ec2d',1,'basic_json']]],
-  ['array_5ft_1',['array_t',['../classbasic__json.html#a7cf28eb944e7c06aa47f0bc3a9d6f454',1,'basic_json']]]
+  ['imagefilemsg_0',['ImageFileMsg',['../namespaceevent__detector__db__recording__plugin.html#ac5fd671a424a9614dc62e0b54b130dae',1,'event_detector_db_recording_plugin']]],
+  ['imagemsg_1',['ImageMsg',['../namespaceevent__detector__db__recording__plugin.html#a9577201335fe28419594de3a7e18d2d3',1,'event_detector_db_recording_plugin']]]
 ];

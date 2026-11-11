@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['host_0',['host',['../classevent__detector__db__recording__plugin_1_1RecordingRule.html#a884eb75b94a9c6347a26403bb839fdba',1,'event_detector_db_recording_plugin::RecordingRule']]]
+  ['instance_5f_0',['instance_',['../classevent__detector__db__recording__plugin_1_1DatabaseInterface.html#ad4d3bccd5483b519e121145380149261',1,'event_detector_db_recording_plugin::DatabaseInterface']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['kclientbaseframe_0',['kClientBaseFrame',['../namespaceevent__detector__db__recording__plugin.html#a93022696ed419ae628ebc838c9e29c32',1,'event_detector_db_recording_plugin']]],
-  ['kclientgeocenterframe_1',['kClientGeoCenterFrame',['../namespaceevent__detector__db__recording__plugin.html#aa5140d1e12ada88df8c25e6d41408102',1,'event_detector_db_recording_plugin']]],
-  ['knonclientframes_2',['kNonClientFrames',['../namespaceevent__detector__db__recording__plugin.html#a918b5634dbf173f02802cc20e7d223f4',1,'event_detector_db_recording_plugin']]]
+  ['large_5fdata_5froot_0',['large_data_root',['../classevent__detector__db__recording__plugin_1_1RecordingRule.html#a91f500c054dfa97a43b7eeedc9406402',1,'event_detector_db_recording_plugin::RecordingRule']]],
+  ['large_5fdata_5froot_5f_1',['large_data_root_',['../classevent__detector__db__recording__plugin_1_1DatabaseInterface.html#a59d4ceb9526c1f333a9c1687cabfbcc9',1,'event_detector_db_recording_plugin::DatabaseInterface']]],
+  ['listener_2',['listener',['../classevent__detector__db__recording__plugin_1_1DatabaseInterface.html#a71a71a53b3294777c0083117bdcb0b84',1,'event_detector_db_recording_plugin::DatabaseInterface']]]
 ];

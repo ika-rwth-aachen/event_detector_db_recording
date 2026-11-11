@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['base_5fiterator_0',['base_iterator',['../classdetail_1_1json__reverse__iterator.html#ab306723c375c396a5ccd90e2d31ad651',1,'detail::json_reverse_iterator']]],
-  ['binary_5ft_1',['binary_t',['../classbasic__json.html#aabedd827d4943302a4cf0413956341db',1,'basic_json']]],
-  ['boolean_5ft_2',['boolean_t',['../classbasic__json.html#af396ac808d774d4ea0db4c7da11ce569',1,'basic_json']]]
+  ['pointcloudfilemsg_0',['PointCloudFileMsg',['../namespaceevent__detector__db__recording__plugin.html#ae072b8f7e74f69814f7d74c88019ebd8',1,'event_detector_db_recording_plugin']]],
+  ['pointcloudmsg_1',['PointCloudMsg',['../namespaceevent__detector__db__recording__plugin.html#ac6bccba0b3a10cd20b2f56531ff37ad0',1,'event_detector_db_recording_plugin']]],
+  ['posemsg_2',['PoseMsg',['../namespaceevent__detector__db__recording__plugin.html#ab67645b8c45002812436829b6350ca03',1,'event_detector_db_recording_plugin']]]
 ];

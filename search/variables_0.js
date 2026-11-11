@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['array_5fiterator_0',['array_iterator',['../structdetail_1_1internal__iterator.html#a2ad2dc9ea8bba2b50811e34f905350bd',1,'detail::internal_iterator']]]
+  ['buffer_0',['buffer',['../classevent__detector__db__recording__plugin_1_1DatabaseInterface.html#acac8b1d86beb21c937958bd658084c5e',1,'event_detector_db_recording_plugin::DatabaseInterface']]]
 ];

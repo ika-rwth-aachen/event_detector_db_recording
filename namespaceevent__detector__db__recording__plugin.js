@@ -1,0 +1,28 @@
+var namespaceevent__detector__db__recording__plugin =
+[
+    [ "ClientDataRequest", "structevent__detector__db__recording__plugin_1_1ClientDataRequest.html", "structevent__detector__db__recording__plugin_1_1ClientDataRequest" ],
+    [ "DatabaseInterface", "classevent__detector__db__recording__plugin_1_1DatabaseInterface.html", "classevent__detector__db__recording__plugin_1_1DatabaseInterface" ],
+    [ "DataRequest", "structevent__detector__db__recording__plugin_1_1DataRequest.html", "structevent__detector__db__recording__plugin_1_1DataRequest" ],
+    [ "EvaluationResult", "structevent__detector__db__recording__plugin_1_1EvaluationResult.html", "structevent__detector__db__recording__plugin_1_1EvaluationResult" ],
+    [ "RecordAllRule", "classevent__detector__db__recording__plugin_1_1RecordAllRule.html", "classevent__detector__db__recording__plugin_1_1RecordAllRule" ],
+    [ "RecordingRule", "classevent__detector__db__recording__plugin_1_1RecordingRule.html", "classevent__detector__db__recording__plugin_1_1RecordingRule" ],
+    [ "ScenarioData", "structevent__detector__db__recording__plugin_1_1ScenarioData.html", "structevent__detector__db__recording__plugin_1_1ScenarioData" ],
+    [ "ScenarioDataRequest", "structevent__detector__db__recording__plugin_1_1ScenarioDataRequest.html", "structevent__detector__db__recording__plugin_1_1ScenarioDataRequest" ],
+    [ "TemplateRule", "classevent__detector__db__recording__plugin_1_1TemplateRule.html", "classevent__detector__db__recording__plugin_1_1TemplateRule" ],
+    [ "ImageFileMsg", "namespaceevent__detector__db__recording__plugin.html#ac5fd671a424a9614dc62e0b54b130dae", null ],
+    [ "ImageMsg", "namespaceevent__detector__db__recording__plugin.html#a9577201335fe28419594de3a7e18d2d3", null ],
+    [ "PointCloudFileMsg", "namespaceevent__detector__db__recording__plugin.html#ae072b8f7e74f69814f7d74c88019ebd8", null ],
+    [ "PointCloudMsg", "namespaceevent__detector__db__recording__plugin.html#ac6bccba0b3a10cd20b2f56531ff37ad0", null ],
+    [ "PoseMsg", "namespaceevent__detector__db__recording__plugin.html#ab67645b8c45002812436829b6350ca03", null ],
+    [ "StampedPoseMsg", "namespaceevent__detector__db__recording__plugin.html#aba3c3437df68e8c44e41e1849d8f10d5", null ],
+    [ "TransformMsg", "namespaceevent__detector__db__recording__plugin.html#a476545c8adf46fdce9b89ba2f314ad42", null ],
+    [ "maxMsgStamp2Stamp", "namespaceevent__detector__db__recording__plugin.html#aabfdfe597f86e28ceaa5bfcb5cac9103", null ],
+    [ "maxMsgStamp2Stamp", "namespaceevent__detector__db__recording__plugin.html#aacb1b08689aca076965653a11964d2a2", null ],
+    [ "maxMsgStamp2Stamp", "namespaceevent__detector__db__recording__plugin.html#a23e711566b4c18875352d33ff03bec36", null ],
+    [ "minMsgStamp2Stamp", "namespaceevent__detector__db__recording__plugin.html#ab4aea6dbf942830646a2985773958cb9", null ],
+    [ "minMsgStamp2Stamp", "namespaceevent__detector__db__recording__plugin.html#a5461c703c6acc79c857c0f6838b48a9a", null ],
+    [ "minMsgStamp2Stamp", "namespaceevent__detector__db__recording__plugin.html#a60381333bca7e169ef9157d46632d4ba", null ],
+    [ "kClientBaseFrame", "namespaceevent__detector__db__recording__plugin.html#a93022696ed419ae628ebc838c9e29c32", null ],
+    [ "kClientGeoCenterFrame", "namespaceevent__detector__db__recording__plugin.html#aa5140d1e12ada88df8c25e6d41408102", null ],
+    [ "kNonClientFrames", "namespaceevent__detector__db__recording__plugin.html#a918b5634dbf173f02802cc20e7d223f4", null ]
+];

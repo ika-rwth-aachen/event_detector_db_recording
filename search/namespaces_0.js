@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['detail_0',['detail',['../namespacedetail.html',1,'']]],
-  ['detail_3a_3adtoa_5fimpl_1',['dtoa_impl',['../namespacedetail_1_1dtoa__impl.html',1,'detail']]]
+  ['event_5fdetector_5fdb_5frecording_5fplugin_0',['event_detector_db_recording_plugin',['../namespaceevent__detector__db__recording__plugin.html',1,'']]]
 ];
