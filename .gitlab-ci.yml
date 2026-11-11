@@ -1,9 +1,130 @@
-include:
-  - remote: https://raw.githubusercontent.com/ika-rwth-aachen/docker-ros/main/.gitlab-ci/docker-ros.yml
+stages:
+  - docker-ros
+  - compose-oci
+  - helm-oci
+  - consistency
+  - docs
 
-variables:
-  PLATFORM: amd64,arm64
-  TARGET: dev,run
-  BASE_IMAGE: rwthika/ros2:jazzy
-  RMW_IMPLEMENTATION: rmw_zenoh_cpp
-  COMMAND: ros2 launch event_detector_db_recording_plugin event_detector_db_recording_plugin.launch.py startup_state:=3
+docker-ros:
+  stage: docker-ros
+  trigger:
+    include:
+      - remote: https://raw.githubusercontent.com/ika-rwth-aachen/docker-ros/main/.gitlab-ci/docker-ros.yml
+    strategy: depend
+  variables:
+    PLATFORM: amd64
+    TARGET: dev,run
+    BASE_IMAGE: rwthika/ros2:jazzy
+    RMW_IMPLEMENTATION: rmw_zenoh_cpp
+    COMMAND: ros2 launch event_detector_db_recording_plugin event_detector_db_recording_plugin.launch.py startup_state:=3
+    TARGET_CMAKE_ARGS: '-DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+
+compose-oci:
+  stage: compose-oci
+  image: docker:28-cli
+  rules:
+    - if: '$CI_COMMIT_BRANCH || $CI_COMMIT_TAG'
+      exists:
+        - deployment/compose/docker-compose*.yml
+  variables:
+    COMPOSE_FOLDER: deployment/compose
+    COMPOSE_IMAGE_NAME: $CI_REGISTRY_IMAGE/compose
+  script:
+    - |
+      COMPOSE_FILES=$(find "$COMPOSE_FOLDER" -maxdepth 1 -type f -name 'docker-compose*.yml' | sort)
+      test -n "$COMPOSE_FILES"
+    - COMPOSE_IMAGE_TAG="${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}"
+    - echo "$CI_REGISTRY_PASSWORD" | docker login "$CI_REGISTRY" -u "$CI_REGISTRY_USER" --password-stdin
+    - |
+      for compose_file in $COMPOSE_FILES; do
+        artifact_tag=$COMPOSE_IMAGE_TAG
+        filename=${compose_file##*/}
+        if [ "$filename" != docker-compose.yml ]; then
+          suffix=${filename#docker-compose.}
+          suffix=${suffix%.yml}
+          artifact_tag="$COMPOSE_IMAGE_TAG-$suffix"
+        fi
+        docker compose -f "$compose_file" publish --with-env --yes "$COMPOSE_IMAGE_NAME:$artifact_tag"
+      done
+
+helm-oci:
+  stage: helm-oci
+  image:
+    name: alpine/helm:3.18.4
+    entrypoint: [""]
+  rules:
+    - if: '$CI_COMMIT_BRANCH || $CI_COMMIT_TAG'
+      exists:
+        - deployment/helm/Chart.yaml
+        - deployment/helm/*/Chart.yaml
+  variables:
+    CHART_FOLDER: deployment/helm
+    HELM_OCI_REGISTRY: $CI_REGISTRY_IMAGE/helm
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | helm registry login "$CI_REGISTRY" --username "$CI_REGISTRY_USER" --password-stdin
+  script:
+    - |
+      if [ -f "$CHART_FOLDER/Chart.yaml" ]; then
+        CHART_FOLDERS=$CHART_FOLDER
+      else
+        test "$CHART_FOLDER" = deployment/helm
+        CHART_FOLDERS=$(find deployment/helm -mindepth 2 -maxdepth 2 -type f -name Chart.yaml | sed 's#/Chart.yaml$##' | sort)
+        test -n "$CHART_FOLDERS"
+      fi
+    - |
+      for chart_folder in $CHART_FOLDERS; do
+        if [ -z "$CI_COMMIT_TAG" ]; then
+          chart_file="$chart_folder/Chart.yaml"
+          base_version=$(sed -nE 's/^version:[[:space:]]*([^[:space:]#]+).*$/\1/p' "$chart_file")
+          ref_name=${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-$CI_COMMIT_REF_NAME}
+          ref_slug=$(echo "$ref_name" | sed -E 's/[^a-zA-Z0-9-]+/-/g; s/^-+//; s/-+$//')
+          if [ -z "$base_version" ] || [ -z "$ref_slug" ]; then
+            echo "Could not determine a valid chart version or Git ref slug" >&2
+            exit 1
+          fi
+          chart_version="$base_version-$ref_slug"
+          sed -i -E "s/^version:.*$/version: $chart_version/" "$chart_file"
+          echo "Publishing chart version $chart_version"
+        fi
+        helm dependency update "$chart_folder"
+        helm package "$chart_folder" --destination .
+      done
+    - |
+      for chart_package in ./*.tgz; do
+        helm push "$chart_package" "oci://$HELM_OCI_REGISTRY"
+      done
+
+consistency:
+  stage: consistency
+  needs: []
+  image: python:3.12-bookworm
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+    CONSISTENCY_CHECKS_SKIP: "compose_generator_is_idempotent,helm_generator_is_idempotent,readme_generator_is_idempotent"
+  before_script:
+    - apt-get update && apt-get install -y doxygen
+    - python3 -m pip install -r .openads-dev-environment/scripts/requirements.txt
+  script:
+    - python3 .openads-dev-environment/scripts/check_repository_consistency.py --skip "$CONSISTENCY_CHECKS_SKIP"
+
+pages:
+  stage: docs
+  image: ubuntu:24.04
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+    DOXYGEN_PROJECT_NAME: $CI_PROJECT_NAME
+    DOXYGEN_PROJECT_NUMBER: $CI_COMMIT_TAG
+  before_script:
+    - apt-get update
+    - DEBIAN_FRONTEND=noninteractive apt-get install -y ca-certificates doxygen git
+    - git clone --depth 1 --branch v2.4.1 https://github.com/jothepro/doxygen-awesome-css.git doxygen-awesome-css
+  script:
+    - if [ -z "$DOXYGEN_PROJECT_NUMBER" ]; then export DOXYGEN_PROJECT_NUMBER="$CI_COMMIT_SHORT_SHA"; fi
+    - doxygen .openads-dev-environment/Doxyfile
+    - rm -rf public
+    - mv docs/html public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'

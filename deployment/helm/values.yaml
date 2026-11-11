@@ -1,0 +1,28 @@
+openadservice:
+  name: event-detector-db-recording
+  image: gitlab.ika.rwth-aachen.de:5050/fb-fi/its-modules/analysis/event_detector_db_recording:v1.0.0
+  env:
+    # --- name ------
+    NAMESPACE: /
+    NAME: event_detector_db_recording_plugin
+    # --- other -----
+    LOG_LEVEL: info
+    USE_SIM_TIME: false
+    PARAMS: /docker-ros/ws/install/event_detector_db_recording_plugin/share/event_detector_db_recording_plugin/config/params.yml
+    STARTUP_STATE: None
+  args:
+  - /bin/bash
+  - -ic
+  - |
+    ros2 launch event_detector_db_recording_plugin event_detector_db_recording_plugin.launch.py \
+      namespace:=${NAMESPACE} \
+      name:=${NAME} \
+      log_level:=${LOG_LEVEL} \
+      use_sim_time:=${USE_SIM_TIME} \
+      params:=${PARAMS} \
+      ego_data_topic:=${EGO_DATA_TOPIC} \
+      route_topic:=${ROUTE_TOPIC} \
+      global_route_topic:=${GLOBAL_ROUTE_TOPIC} \
+      diagnostics_topic:=${DIAGNOSTICS_TOPIC}
+  rosParamFileMountPath: /docker-ros/ws/install/event_detector_db_recording_plugin/share/event_detector_db_recording_plugin/config/params.yml
+  rosParamFileData: null

@@ -1,26 +1,5 @@
-/** ============================================================================
-MIT License
-
-Copyright (c) 2025 Institute for Automotive Engineering (ika), RWTH Aachen University
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-============================================================================= */
+// Copyright Institute for Automotive Engineering (ika), RWTH Aachen University
+// SPDX-License-Identifier: Apache-2.0
 
 #ifndef GIT_COMMIT_HASH
 #define GIT_COMMIT_HASH "unknown"
@@ -28,9 +7,9 @@ SOFTWARE.
 
 #include <tuple>
 
-#include <cv_bridge/cv_bridge.hpp>
 #include <pcl/io/pcd_io.h>
 #include <pcl_conversions/pcl_conversions.h>
+#include <cv_bridge/cv_bridge.hpp>
 #include <mongocxx/exception/exception.hpp>
 #include <mongocxx/uri.hpp>
 #include <nlohmann/json.hpp>
@@ -50,8 +29,8 @@ DatabaseInterface::DatabaseInterface(const bool dry_run) : dry_run_(dry_run) {
   tf_listener_.listener = std::make_shared<tf2_ros::TransformListener>(*tf_listener_.buffer);
 }
 
-void DatabaseInterface::connectToDatabase(const std::string& db, const std::string& host, const int port,
-                                          const std::string& user, const std::string& password) {
+void DatabaseInterface::connectToDatabase(
+    const std::string& db, const std::string& host, const int port, const std::string& user, const std::string& password) {
   if (!dry_run_) {
     // construct connection URI (with or without authentication)
     std::string uri, safe_uri;
@@ -86,8 +65,8 @@ void DatabaseInterface::connectToDatabase(const std::string& db, const std::stri
 void DatabaseInterface::setLargeDataRoot(const std::string& path) { large_data_root_ = path; }
 
 void DatabaseInterface::createConnectedClient(const std::string& client_id, const std::string& name) {
-  RCLCPP_DEBUG(rclcpp::get_logger("event_detector_db_recording_plugin"),
-               "DatabaseInterface received information about client %s", name.c_str());
+  RCLCPP_DEBUG(rclcpp::get_logger("event_detector_db_recording_plugin"), "DatabaseInterface received information about client %s",
+               name.c_str());
 
   // create filter querying the ConnectedClient document
   // clang-format off
@@ -127,8 +106,7 @@ void DatabaseInterface::addTransformToConnectedClient(const TransformMsg& transf
                transform.header.frame_id.c_str(), transform.child_frame_id.c_str(), client_id.c_str());
 
   // only store static transforms between client frames
-  if (kNonClientFrames.count(transform.header.frame_id) > 0 || kNonClientFrames.count(transform.child_frame_id) > 0)
-    return;
+  if (kNonClientFrames.count(transform.header.frame_id) > 0 || kNonClientFrames.count(transform.child_frame_id) > 0) return;
 
   // create filter querying the ConnectedClient document,
   // which should only match if the transform doesn't exist yet
@@ -181,8 +159,8 @@ bsoncxx::stdx::optional<TransformMsg> DatabaseInterface::requestTransform(const 
     transform = tf_listener_.buffer->lookupTransform(target_frame, source_frame, time, timeout);
   } catch (tf2::TransformException& e) {
     RCLCPP_WARN(rclcpp::get_logger("event_detector_db_recording_plugin"),
-                "Lookup of transform between frames '%s' and '%s' failed: %s", target_frame.c_str(),
-                source_frame.c_str(), e.what());
+                "Lookup of transform between frames '%s' and '%s' failed: %s", target_frame.c_str(), source_frame.c_str(),
+                e.what());
     return bsoncxx::stdx::nullopt;
   }
 
@@ -286,11 +264,11 @@ void DatabaseInterface::storeScenarioData(const ScenarioData& data) {
 
   try {
     std::string scenario_field;
-#define DATATYPE(TYPE, LARGE_TYPE, VAR, COLLECTION)                                                           \
-  /* store TYPE data */                                                                                       \
-  scenario_field = #VAR;                                                                                      \
-  storeDataInScenario<TYPE, LARGE_TYPE>(data.VAR, #COLLECTION, scenario_field, scenario_oid, doc, client_ids, \
-                                        first_stamp, last_stamp);
+#define DATATYPE(TYPE, LARGE_TYPE, VAR, COLLECTION)                                                                        \
+  /* store TYPE data */                                                                                                    \
+  scenario_field = #VAR;                                                                                                   \
+  storeDataInScenario<TYPE, LARGE_TYPE>(data.VAR, #COLLECTION, scenario_field, scenario_oid, doc, client_ids, first_stamp, \
+                                        last_stamp);
 #include <event_detector_db_recording_plugin/datatypes.macro>
 #undef DATATYPE
 
@@ -349,8 +327,10 @@ std::string DatabaseInterface::createLargeDataDirectory(const std::string& subpa
   return directory;
 }
 
-ImageFileMsg DatabaseInterface::writeLargeDataToDisk(const ImageMsg& msg, const std::string& scenario_id,
-                                                     const std::string& client_id, const std::string& topic) {
+ImageFileMsg DatabaseInterface::writeLargeDataToDisk(const ImageMsg& msg,
+                                                     const std::string& scenario_id,
+                                                     const std::string& client_id,
+                                                     const std::string& topic) {
   // set filename
   std::string filename = std::to_string(msg.header.stamp.sec) +
                          std::string(9 - std::to_string(msg.header.stamp.nanosec).length(), '0') +
@@ -385,8 +365,10 @@ ImageFileMsg DatabaseInterface::writeLargeDataToDisk(const ImageMsg& msg, const 
   return image_file;
 }
 
-PointCloudFileMsg DatabaseInterface::writeLargeDataToDisk(const PointCloudMsg& msg, const std::string& scenario_id,
-                                                          const std::string& client_id, const std::string& topic) {
+PointCloudFileMsg DatabaseInterface::writeLargeDataToDisk(const PointCloudMsg& msg,
+                                                          const std::string& scenario_id,
+                                                          const std::string& client_id,
+                                                          const std::string& topic) {
   // set filename
   std::string filename = std::to_string(msg.header.stamp.sec) +
                          std::string(9 - std::to_string(msg.header.stamp.nanosec).length(), '0') +
@@ -403,8 +385,7 @@ PointCloudFileMsg DatabaseInterface::writeLargeDataToDisk(const PointCloudMsg& m
   try {
     pcl::io::savePCDFile(abs_filepath, pcl, true);
   } catch (pcl::IOException& e) {
-    RCLCPP_WARN(rclcpp::get_logger("event_detector_db_recording_plugin"), "Failed to write pointcloud to disk: %s",
-                e.what());
+    RCLCPP_WARN(rclcpp::get_logger("event_detector_db_recording_plugin"), "Failed to write pointcloud to disk: %s", e.what());
     RCLCPP_WARN(rclcpp::get_logger("event_detector_db_recording_plugin"),
                 "Inconsistency warning: The database might contain data documents "
                 "referencing the non-exported data sample.");
@@ -468,15 +449,16 @@ std::vector<bsoncxx::oid> DatabaseInterface::insert(const std::vector<bsoncxx::d
 
   } catch (mongocxx::exception& e) {
     RCLCPP_FATAL(rclcpp::get_logger("event_detector_db_recording_plugin"),
-                 "Insertion of %d documents in collection '%s' failed: %s", static_cast<int>(docs.size()),
-                 collection.c_str(), e.what());
+                 "Insertion of %d documents in collection '%s' failed: %s", static_cast<int>(docs.size()), collection.c_str(),
+                 e.what());
     throw;
   }
 }
 
 bsoncxx::stdx::optional<bsoncxx::oid> DatabaseInterface::update(const bsoncxx::document::value& filter,
                                                                 const bsoncxx::document::value& doc,
-                                                                const std::string& collection, bool upsert) {
+                                                                const std::string& collection,
+                                                                bool upsert) {
   if (dry_run_) return bsoncxx::stdx::nullopt;
 
   try {
@@ -499,8 +481,8 @@ bsoncxx::stdx::optional<bsoncxx::oid> DatabaseInterface::update(const bsoncxx::d
   } catch (mongocxx::exception& e) {
     std::string op = "Update";
     if (upsert) op = "Upsert";
-    RCLCPP_FATAL(rclcpp::get_logger("event_detector_db_recording_plugin"),
-                 "%s of 1 document in collection '%s' failed: %s", op.c_str(), collection.c_str(), e.what());
+    RCLCPP_FATAL(rclcpp::get_logger("event_detector_db_recording_plugin"), "%s of 1 document in collection '%s' failed: %s",
+                 op.c_str(), collection.c_str(), e.what());
     throw;
   }
 }
@@ -525,9 +507,12 @@ bsoncxx::stdx::optional<bsoncxx::document::value> DatabaseInterface::find(const 
 }
 
 void DatabaseInterface::storeDataInScenario(const ed::string_map_2d<std::vector<StampedPoseMsg>>& client_samples,
-                                            const std::string& collection, const std::string& scenario_field,
-                                            const bsoncxx::oid& scenario_oid, bsoncxx::document::value& scenario_doc,
-                                            std::set<std::string>& client_ids, rclcpp::Time& first_stamp,
+                                            const std::string& collection,
+                                            const std::string& scenario_field,
+                                            const bsoncxx::oid& scenario_oid,
+                                            bsoncxx::document::value& scenario_doc,
+                                            std::set<std::string>& client_ids,
+                                            rclcpp::Time& first_stamp,
                                             rclcpp::Time& last_stamp) {
   // loop over all clients for which there are samples
   for (const auto& kv : client_samples) {
@@ -549,8 +534,8 @@ void DatabaseInterface::storeDataInScenario(const ed::string_map_2d<std::vector<
   }
 
   // pass data on to generic function
-  storeDataInScenario<PoseMsg>(client_samples, collection, scenario_field, scenario_oid, scenario_doc, client_ids,
-                               first_stamp, last_stamp);
+  storeDataInScenario<PoseMsg>(client_samples, collection, scenario_field, scenario_oid, scenario_doc, client_ids, first_stamp,
+                               last_stamp);
 }
 
 }  // namespace event_detector_db_recording_plugin

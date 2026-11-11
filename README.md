@@ -1,15 +1,17 @@
 # Event Detector Action Plugin | *Database Recording*
 
 <p align="center">
-  <!--<img src="https://img.shields.io/github/v/release/ika-rwth-aachen/event_detector_db_recording"/>-->
-  <img src="https://img.shields.io/github/license/ika-rwth-aachen/event_detector_db_recording"/>
+  <a href="https://www.ros.org"><img src="https://img.shields.io/badge/ROS 2-jazzy-22314e"/></a>
+  <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/releases/latest"><img src="https://img.shields.io/github/v/release/ika-rwth-aachen/event_detector_db_recording"/></a>
+  <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ika-rwth-aachen/event_detector_db_recording"/></a>
   <!--<a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docker-ros.yml"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docker-ros.yml/badge.svg"/></a>-->
-  <a href="https://ika-rwth-aachen.github.io/event_detector_db_recording/"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/doc.yml/badge.svg"/></a>
-  <img src="https://img.shields.io/badge/ROS 2-jazzy-293754"/>
+  <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/helm-oci.yml"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/helm-oci.yml/badge.svg"/></a>
+  <a href="https://ika-rwth-aachen.github.io/event_detector_db_recording/"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docs.yml/badge.svg"/></a>
+  <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/consistency.yml"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/consistency.yml/badge.svg"/></a>
 </p>
 
 <p align="center">
-⸻ <b><i><a href="#quick-start">Quick Start</a></i></b> | <b><i><a href="#analysis-rules">Analysis Rules</a></i></b> | <b><i><a href="#installation">Installation</a></i></b> | <b><i><a href="#documentation">Documentation</a></i></b> | <b><i><a href="#research-article">Research Article</a></i></b> | <b><i><a href="#acknowledgements">Acknowledgements</a></i></b> ⸻
+<b><i><a href="#quick-start">Quick Start</a></i></b> | <b><i><a href="#analysis-rules">Analysis Rules</a></i></b> | <b><i><a href="#installation">Installation</a></i></b> | <b><i><a href="#documentation">Documentation</a></i></b> | <b><i><a href="#research-article">Research Article</a></i></b> | <b><i><a href="#acknowledgements">Acknowledgements</a></i></b>
 </p>
 
 `event_detector_db_recording` is an action plugin for the ROS 2 [event detector framework](https://github.com/ika-rwth-aachen/event_detector) that allows to write data from buffer to a database. With this action plugin, you can automatically ...
@@ -36,8 +38,7 @@ The example illustrates that the event detector framework is highly modular and 
 ## Quick Start
 
 > [!TIP]
-> Check out the [examples repository](https://github.com/ika-rwth-aachen/event_detector_examples) to see the event detector and all of its action plugins in action!  
-> The examples also give a good idea of potential use cases for the event detector.
+> Check out the [examples repository](https://github.com/ika-rwth-aachen/event_detector_examples) to see the event detector and all of its action plugins in action!
 
 
 ## Analysis Rules
@@ -46,7 +47,7 @@ The concrete detection of any specific event and the concrete action that should
 
 | Analysis Rule | Purpose |
 | --- | --- |
-| [`RecordAllRule`](./event_detector_db_recording_plugin/include/event_detector_db_recording_plugin/rules/record_all/README.md) | record all buffered data to database |
+| [`RecordAllRule`](./event_detector_db_recording_plugin/README.md#recordallrule) | periodically record all buffered data of selected data types to the database |
 
 
 ## Installation
@@ -59,7 +60,7 @@ git clone https://github.com/ika-rwth-aachen/event_detector_db_recording.git src
 rosdep install -r --ignore-src --from-paths src/event_detector_db_recording
 vcs import src < src/event_detector_db_recording/.repos
 ./src/event_detector_db_recording/docker/custom.sh
-colcon build --packages-up-to event_detector_db_recording --cmake-args -DCMAKE_BUILD_TYPE=Release
+colcon build --packages-up-to event_detector_db_recording_plugin --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
 The event detector with database recording plugin can then be launched.
@@ -104,17 +105,7 @@ None by default. Analysis rules may define additional publishers.
 
 #### Parameters
 
-Parameters of the core event detector are [documented here](https://github.com/ika-rwth-aachen/event_detector?tab=readme-ov-file#parameters). All database recording plugin rules additionally define the following parameters under `rule_params.<RULE_NAME>.parameters`. Analysis rules may define more parameters.
-
-| Parameter | Type | Default | Description | Options |
-| --- | --- | --- | --- | --- |
-| `database.name` | `string` | `db` | database name |  |
-| `database.host` | `string` | `localhost` | database host |  |
-| `database.port` | `int` | `27017` | database port |  |
-| `database.user` | `string` | `` | database user |  |
-| `database.pass` | `string` | `` | database user password |  |
-| `database.large_data_root` | `string` | `` | directory for large data storage (see [*Supported data types*](#supported-data-types)) |  |
-| `database.dry_run` | `bool` | `false` | whether to perform a dry run (no data will be stored) |  |
+Parameters of the core event detector are [documented here](https://github.com/ika-rwth-aachen/event_detector?tab=readme-ov-file#parameters). Each analysis rule additionally defines its own parameters under `rule_params.<RULE_NAME>.parameters`, documented in the [*plugin README*](event_detector_db_recording_plugin/README.md#analysis-rules). Parameters for the database connection (`database.*`) are shared by all rules, see [*Base parameters*](event_detector_db_recording_plugin/README.md#base-parameters-recordingrule).
 
 </details>
 
@@ -124,7 +115,7 @@ Parameters of the core event detector are [documented here](https://github.com/i
 
 The database recording plugin natively supports all ROS message types supported by the core event detector, see [*Supported data types*](https://github.com/ika-rwth-aachen/event_detector?tab=readme-ov-file#supported-data-types).
 
-The database recording plugin has the notion of *large data types*. Data of large data types is not directly stored in the database, but is written to disk instead. To give an example, `sensor_msgs/msg/Image` messages are not directly stored in the database, but images are written to PNG files on disk instead. What is written to the database, are corresponding messages of type [`event_detector_db_recording_msgs/msg/ImageFile`](https://github.com/ika-rwth-aachen/event_detector_db_recording_msgs/blob/main/event_detector_db_recording_msgs/msg/ImageFile.msg), which store the file location on disk in the database. All large data types define a corresponding replacement data type in [`datatypes.macro`](./event_detector_db_recording_plugin/include/event_detector_db_recording_plugin/datatypes.macro) and implement the writing to disk behavior in the [`DatabaseInterface`](./event_detector_db_recording_plugin/include/event_detector_db_recording_plugin/DatabaseInterface.hpp).
+Data of *large data types* (e.g., `sensor_msgs/msg/Image`, `sensor_msgs/msg/PointCloud2`) is not stored in the database directly, but written to files on disk; the database stores a replacement message referencing the file instead, see [*Large Data Types*](event_detector_db_recording_plugin/README.md#large-data-types).
 
 </details>
 
@@ -132,7 +123,7 @@ The database recording plugin has the notion of *large data types*. Data of larg
 
 <details><summary><i>Click to show</i></summary>
 
-In general, follow the [generic instructions](https://github.com/ika-rwth-aachen/event_detector?tab=readme-ov-file#how-to-implement-a-custom-analysis-rule) for implementing a custom analysis rule in the event detector framework. The [`event_detector_db_recording_plugin::TemplateRule`](./event_detector_db_recording_plugin/include/event_detector_db_recording_plugin/rules/template/) is a good point to get started with an analysis rule for the database recording plugin.
+In general, follow the [generic instructions](https://github.com/ika-rwth-aachen/event_detector?tab=readme-ov-file#how-to-implement-a-custom-analysis-rule) for implementing a custom analysis rule in the event detector framework. The [`event_detector_db_recording_plugin::TemplateRule`](./event_detector_db_recording_plugin/README.md#custom-analysis-rules) is a good point to get started with an analysis rule for the database recording plugin.
 
 Note that the `TemplateRule` inherits [`event_detector_db_recording_plugin::RecordingRule`](./event_detector_db_recording_plugin/include/event_detector_db_recording_plugin/RecordingRule.hpp) instead of directly inheriting [`event_detector::AnalysisRule`](https://github.com/ika-rwth-aachen/event_detector/blob/main/event_detector/include/event_detector/AnalysisRule.hpp). The abstract `RecordingRule` implements the entire functionality for interfacing with a MongoDB database. This way, concrete analysis rules in the database recording plugin only need to implement the event detection by overriding `event_detector::AnalysisRule::evaluate()` (e.g., `event_detector_db_recording_plugin::TemplateRule::evaluate()`) and have it call `event_detector_db_recording_plugin::RecordingRule::trigger(const EvaluationResult&)` at the end to trigger storage.
 
@@ -154,4 +145,14 @@ If you are interested in the role of event detection in modern automated driving
 
 ## Acknowledgements
 
-This work is accomplished within the projects *6GEM* (FKZ 16KISK036K), *autotech.agil* (FKZ 01IS22088A), and *UNICAR.agil* (FKZ 16EMO0284K). We acknowledge the financial support for the projects by the *Federal Ministry of Education and Research of Germany (BMBF)*.
+Development and maintenance of this repository are supported by the following projects. We acknowledge the funding of the respective institutions.
+
+| Project | Funding Institution | Grant Number |
+| --- | --- | --- |
+| 6GEM                                          | 🇩🇪 Federal Ministry for Research, Technology and Space (BMFTR) | 16KISK036K |
+| [autotech.agil](https://www.autotechagil.de/) | 🇩🇪 Federal Ministry for Research, Technology and Space (BMFTR) | 01IS22088A |
+| [UNICAR.agil](https://www.unicaragil.de/de/)  | 🇩🇪 Federal Ministry for Research, Technology and Space (BMFTR) | 16EMO0284K |
+
+<p>
+  <img src="https://www.drought.uni-freiburg.de/stressres/images/bmftr-logo/image" height=70>
+</p>
