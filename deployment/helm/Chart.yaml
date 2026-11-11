@@ -1,0 +1,9 @@
+apiVersion: v2
+name: event-detector-db-recording
+version: 1.0.0
+appVersion: 1.0.0
+description: event_detector action plugin for writing data from buffer to a database
+dependencies:
+  - repository: oci://ghcr.io/openads-project/openads-helm
+    name: openadservice
+    version: 1.2.0
