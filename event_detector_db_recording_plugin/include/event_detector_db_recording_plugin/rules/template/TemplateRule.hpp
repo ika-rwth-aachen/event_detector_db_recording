@@ -18,13 +18,27 @@ namespace event_detector_db_recording_plugin {
  */
 class TemplateRule : public RecordingRule {
  public:
+  /**
+   * @brief Returns the name of the rule.
+   *
+   * @return std::string rule name
+   */
   std::string getRuleName() const override;
 
+  /**
+   * @brief Initializes the rule.
+   */
   void onInitialize() override;
 
+  /**
+   * @brief Loads the observed area (x, y, radius) as well as the generic RecordingRule parameters.
+   */
   void loadRuleParameters() override;
 
  protected:
+  /**
+   * @brief Requests the latest pose and point cloud of a point cloud client located within the observed area.
+   */
   void evaluate() override;
 
  protected:

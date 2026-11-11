@@ -39,7 +39,9 @@ struct ClientDataRequest {
 #define DATATYPE(TYPE, LARGE_TYPE, VAR, COLLECTION) DataRequest VAR;  ///< TYPE request information
 #include <event_detector_db_recording_plugin/datatypes.macro>
 #undef DATATYPE
-  // request transforms by default
+  /**
+   * @brief Constructs a ClientDataRequest that requests all transforms by default
+   */
   ClientDataRequest() : tf2_msgs__TFMessage(DataRequest{true, -1, {}}) {}
 };
 

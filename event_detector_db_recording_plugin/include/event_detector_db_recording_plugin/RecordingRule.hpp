@@ -16,6 +16,12 @@ namespace ed = event_detector;
 
 class RecordingRule : public ed::AnalysisRule {
  public:
+  /**
+   * @brief Loads the database configuration parameters and sets up the database connection.
+   *
+   * Registers all clients currently connected to the event detector in the database.
+   * Derived rules should call this at the end of their own loadRuleParameters().
+   */
   void loadRuleParameters() override;
 
  protected:

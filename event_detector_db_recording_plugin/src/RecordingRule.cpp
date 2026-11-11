@@ -11,6 +11,15 @@
 
 namespace event_detector_db_recording_plugin {
 
+/**
+ * @brief Returns the buffer stamp of the sample with the earliest ROS header stamp (overload for messages with header).
+ *
+ * @tparam T message type
+ *
+ * @param samples non-empty list of stamped samples
+ *
+ * @return rclcpp::Time buffer stamp of the sample with the earliest header stamp
+ */
 template <typename T>
 rclcpp::Time minMsgStamp2Stamp(const std::vector<ed::Stamped<T>>& samples, const ed::HasRosHeaderYes&) {
   const auto sample = std::min_element(samples.begin(), samples.end(), [](const ed::Stamped<T>& s1, const ed::Stamped<T>& s2) {
@@ -19,16 +28,43 @@ rclcpp::Time minMsgStamp2Stamp(const std::vector<ed::Stamped<T>>& samples, const
   return sample->stamp;
 }
 
+/**
+ * @brief Returns zero time (overload for messages without header).
+ *
+ * @tparam T message type
+ *
+ * @param samples stamped samples (unused)
+ *
+ * @return rclcpp::Time zero time
+ */
 template <typename T>
 rclcpp::Time minMsgStamp2Stamp(const std::vector<ed::Stamped<T>>& samples, const ed::HasRosHeaderNo&) {
   return rclcpp::Time(0);
 }
 
+/**
+ * @brief Returns the buffer stamp of the sample with the earliest ROS header stamp, or zero time if T has no header.
+ *
+ * @tparam T message type
+ *
+ * @param samples stamped samples
+ *
+ * @return rclcpp::Time buffer stamp of the sample with the earliest header stamp, or zero time
+ */
 template <typename T>
 rclcpp::Time minMsgStamp2Stamp(const std::vector<ed::Stamped<T>>& samples) {
   return minMsgStamp2Stamp(samples, ed::HasRosHeader<T>());
 }
 
+/**
+ * @brief Returns the buffer stamp of the sample with the latest ROS header stamp (overload for messages with header).
+ *
+ * @tparam T message type
+ *
+ * @param samples non-empty list of stamped samples
+ *
+ * @return rclcpp::Time buffer stamp of the sample with the latest header stamp
+ */
 template <typename T>
 rclcpp::Time maxMsgStamp2Stamp(const std::vector<ed::Stamped<T>>& samples, const ed::HasRosHeaderYes&) {
   const auto sample = std::max_element(samples.begin(), samples.end(), [](const ed::Stamped<T>& s1, const ed::Stamped<T>& s2) {
@@ -37,11 +73,29 @@ rclcpp::Time maxMsgStamp2Stamp(const std::vector<ed::Stamped<T>>& samples, const
   return sample->stamp;
 }
 
+/**
+ * @brief Returns zero time (overload for messages without header).
+ *
+ * @tparam T message type
+ *
+ * @param samples stamped samples (unused)
+ *
+ * @return rclcpp::Time zero time
+ */
 template <typename T>
 rclcpp::Time maxMsgStamp2Stamp(const std::vector<ed::Stamped<T>>& samples, const ed::HasRosHeaderNo&) {
   return rclcpp::Time(0);
 }
 
+/**
+ * @brief Returns the buffer stamp of the sample with the latest ROS header stamp, or zero time if T has no header.
+ *
+ * @tparam T message type
+ *
+ * @param samples stamped samples
+ *
+ * @return rclcpp::Time buffer stamp of the sample with the latest header stamp, or zero time
+ */
 template <typename T>
 rclcpp::Time maxMsgStamp2Stamp(const std::vector<ed::Stamped<T>>& samples) {
   return maxMsgStamp2Stamp(samples, ed::HasRosHeader<T>());
