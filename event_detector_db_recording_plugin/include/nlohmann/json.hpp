@@ -1,5 +1,6 @@
 // Copyright (c) 2013-2022 Niels Lohmann <https://nlohmann.me>
 // SPDX-License-Identifier: MIT
+/// \cond
 //     __ _____ _____ _____
 //  __|  |   __|     |   | |  JSON for Modern C++
 // |  |  |__   |  |  | | | |  version 3.11.2
@@ -24593,3 +24594,4 @@ inline void swap(nlohmann::NLOHMANN_BASIC_JSON_TPL& j1, nlohmann::NLOHMANN_BASIC
 
 
 #endif  // INCLUDE_NLOHMANN_JSON_HPP_
+/// \endcond

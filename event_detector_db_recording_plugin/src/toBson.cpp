@@ -1,5 +1,6 @@
 // Copyright Institute for Automotive Engineering (ika), RWTH Aachen University
 // SPDX-License-Identifier: Apache-2.0
+/// \cond
 
 #include <chrono>
 
@@ -6306,3 +6307,4 @@ value toBson(const event_detector_db_recording_msgs::msg::PointCloudFile& msg) {
 
 // clang-format on
 }  // namespace event_detector_db_recording_plugin
+/// \endcond

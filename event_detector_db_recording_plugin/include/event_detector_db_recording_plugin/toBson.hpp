@@ -1,5 +1,6 @@
 // Copyright Institute for Automotive Engineering (ika), RWTH Aachen University
 // SPDX-License-Identifier: Apache-2.0
+/// \cond
 
 #pragma once
 
@@ -1651,3 +1652,4 @@ bsoncxx::document::value toBson(const event_detector_db_recording_msgs::msg::Poi
 }  // namespace event_detector_db_recording_plugin
 
 #include <event_detector_db_recording_plugin/toBson.tpp>
+/// \endcond
