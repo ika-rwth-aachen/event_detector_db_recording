@@ -4,7 +4,6 @@
   <a href="https://www.ros.org"><img src="https://img.shields.io/badge/ROS 2-jazzy-22314e"/></a>
   <!-- <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/releases/latest"><img src="https://img.shields.io/github/v/release/ika-rwth-aachen/event_detector_db_recording"/></a> -->
   <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ika-rwth-aachen/event_detector_db_recording"/></a>
-  <br>
   <!--<a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docker-ros.yml"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docker-ros.yml/badge.svg"/></a>-->
   <a href="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/helm-oci.yml"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/helm-oci.yml/badge.svg"/></a>
   <a href="https://ika-rwth-aachen.github.io/event_detector_db_recording/"><img src="https://github.com/ika-rwth-aachen/event_detector_db_recording/actions/workflows/docs.yml/badge.svg"/></a>
